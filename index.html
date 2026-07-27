@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خالد رابعة - تطبيقات IPTV</title>
+    <!-- FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #030b1e;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            user-select: none;
+        }
+
+      body {
+    background-color: #030b1e;
+    background-image: url('2icon.jpg'); /* استبدل bg.jpg باسم صورتك */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(10, 20, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 0 30px rgba(0, 195, 255, 0.15);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .logo-box {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto 12px auto;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.04);
+        }
+
+        .site-title {
+            font-size: 30px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 
+                0 0 5px #38bdf8,
+                0 0 10px #38bdf8,
+                0 0 20px #0284c7;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ff2a2a;
+            background: rgba(255, 42, 42, 0.15);
+            border: 1px solid #ff2a2a;
+            padding: 4px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 8px;
+            box-shadow: 0 0 10px rgba(255, 42, 42, 0.4);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 10px;
+            border-radius: 14px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            filter: brightness(1.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ألوان الأزرار */
+        .btn-ostoura  { background: linear-gradient(135deg, #ff2a2a, #dc2626); }
+        .btn-general  { background: linear-gradient(135deg, #09121d, #1e293b); border: 1px solid #334155; }
+        .btn-drama    { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+        .btn-hdo      { background: linear-gradient(135deg, #ff7300, #f97316); }
+        .btn-oscar    { background: linear-gradient(135deg, #eab308, #facc15); color: #000; }
+        .btn-smart    { background: linear-gradient(135deg, #cc0000, #ef4444); }
+        /* زر موفي بوكس باللون الأخضر النيون */
+        .btn-moviebox { background: linear-gradient(135deg, #10b981, #059669); }
+        .btn-family   { background: linear-gradient(135deg, #475569, #64748b); }
+
+        .sub-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 40px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(56, 189, 248, 0.6);
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+        }
+
+        .code-box-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .code-title-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .code-display {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border-radius: 35px;
+            padding: 25px;
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffffff;
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.4);
+            word-break: break-all;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        @media (max-width: 600px) {
+            .apps-grid { grid-template-columns: 1fr; }
+            .app-btn { font-size: 18px; padding: 15px; }
+            .action-btn { font-size: 18px; padding: 16px; }
+            .code-display { font-size: 28px; }
+            .logo-img { max-width: 120px; }
+            .site-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- زر الرجوع -->
+        <button id="backBtn" class="back-btn" style="display: none;" onclick="goHome()">
+            <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+        </button>
+
+        <!-- الهيدر -->
+        <div class="header">
+            <div class="logo-box">
+                <img src="1icon.png" alt="الشعار" class="logo-img">
+                <h1 class="site-title">خالد رابعة</h1>
+                <span class="logo-subtitle">للتحميل التطبيقات للتلفاز</span>
+            </div>
+        </div>
+
+        <!-- الصفحة الرئيسية -->
+        <div id="page-home" class="page active">
+            <div class="apps-grid">
+                <button type="button" class="app-btn btn-ostoura" onclick="openDualPlayer('الأسطورة TV', 'https://www.mediafire.com/file/uqnjkojlkkaq5cy/smart_v7.apk/file', 'https://www.mediafire.com/file/om1fvoj2z4khjuc/Url_Video_Player_2.0-Apkpure.apk/file')">الاسطورة TV</button>
+                <button type="button" class="app-btn btn-general" onclick="openActivation('جنرال TV', 'https://www.mediafire.com/file/ficgvqjswwdixnj/GENRAL_tv_box+(1).apk/file', '000')">جنرال TV</button>
+                
+                <button type="button" class="app-btn btn-drama" onclick="openActivation('دراما لايف', 'https://www.mediafire.com/file/fb7qwh64vbx6m5d/Drama_Live_APK.apk/file', 'FG-CODE-2026')">دراما لايف</button>
+                <button type="button" class="app-btn btn-hdo" onclick="openDualPlayer('HDO BOX', 'https://www.mediafire.com/file/9ee956m2u9k8ply/hdo-android-tv.apk/file', 'https://www.mediafire.com/file/u06t9yeot4s56no/Drama_Player_v1.0.11.apk/file')">HDO BOX</button>
+                
+                <button type="button" class="app-btn btn-oscar" onclick="openDualPlayer('أوسكار TV', 'https://www.mediafire.com/file/1whb4iiigktc9wn/OscarTV_v1.1.5_SmartTV.apk/file', 'https://www.mediafire.com/file/7a4toc50x5n5o53/TDM_v2.0.6.apk/file')">اوكسار TV</button>
+                <button type="button" class="app-btn btn-smart" onclick="directDownload('سمارت تيوب', 'https://www.mediafire.com/file/0u98ry0ocf9v692/SmartTube_beta_32.03_arm64-v8a.apk/file')">سمارت تيوب</button>
+                
+                <!-- تم تغيير الاسم إلى موفي بوكس واللون إلى الأخضر -->
+                <button type="button" class="app-btn btn-moviebox" onclick="directDownload('موفي بوكس', 'https://www.mediafire.com/file/b5xelfryteqkqhs/MovieBoxTv-v-1.1.6.0723.03.apk/file')">موفي بوكس</button>
+                
+                 <button type="button" class="app-btn btn-oscar" onclick="directDownload('فيو TV', 'https://www.mediafire.com/file/ohoz7vdf1maem4u/viu-android-tv-4-4-0.apk/file')">فيو TV</button>
+            </div>
+        </div>
+
+        <!-- صفحة تطبيقات المشغل المزدوج -->
+        <div id="page-dual-player" class="page">
+            <div class="sub-options">
+                <a id="dualAppDownloadLink" href="#" target="_blank" class="action-btn">
+                    <i class="fa-solid fa-download"></i> تحميل التطبيق
+                </a>
+                <a id="dualPlayerDownloadLink" href="#" target="_blank" class="action-btn">
+                    <i class="fa-solid fa-circle-play"></i> تحميل المشغل
+                </a>
+            </div>
+        </div>
+
+        <!-- صفحة تطبيقات التفعيل -->
+        <div id="page-activation" class="page">
+            <div class="sub-options">
+                <a id="activationAppDownloadLink" href="#" target="_blank" class="action-btn">
+                    <i class="fa-solid fa-download"></i> تحميل التطبيق
+                </a>
+                <button type="button" class="action-btn" onclick="showCodePage()">
+                    <i class="fa-solid fa-key"></i> صفحه التفعيل
+                </button>
+            </div>
+        </div>
+
+        <!-- صفحة رمز التفعيل -->
+        <div id="page-code-display" class="page">
+            <div class="code-box-container">
+                <div class="code-title-btn">رمز التفعيل</div>
+                <div id="activationCodeValue" class="code-display">---- ----</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const backBtn = document.getElementById('backBtn');
+            if (backBtn) {
+                backBtn.style.display = (pageId === 'page-home') ? 'none' : 'flex';
+            }
+        }
+
+        function goHome() {
+            showPage('page-home');
+        }
+
+        function openDualPlayer(appName, appDownloadUrl, playerDownloadUrl) {
+            document.getElementById('dualAppDownloadLink').href = appDownloadUrl;
+            document.getElementById('dualPlayerDownloadLink').href = playerDownloadUrl;
+            showPage('page-dual-player');
+        }
+
+        function openActivation(appName, appDownloadUrl, activationCode) {
+            document.getElementById('activationAppDownloadLink').href = appDownloadUrl;
+            document.getElementById('activationCodeValue').innerText = activationCode;
+            showPage('page-activation');
+        }
+
+        function showCodePage() {
+            showPage('page-code-display');
+        }
+
+        function directDownload(appName, downloadUrl) {
+            window.open(downloadUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
